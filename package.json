@@ -1,5 +1,6 @@
 {
   "name": "frontend-assignment",
+  "author": "",
   "version": "1.0.0",
   "description": "A small assignment for frontend developers at Schiphol",
   "main": "src/index.js",
@@ -9,13 +10,16 @@
     "start": "webpack --watch & webpack-dev-server --open-page './public/index.html'",
     "build": "webpack --config webpack.config.js"
   },
-  "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
     "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.5",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-env": "^1.7.0",
+    "babel-preset-env": "^1.6.1",
     "jest": "^23.6.0",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
