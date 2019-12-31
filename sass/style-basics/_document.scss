@@ -1,0 +1,44 @@
+@import "./style-core/colours";
+
+*,
+*::before,
+*::after {
+    // make sure this can be easily overriden
+    box-sizing: inherit;
+}
+
+html {
+    // inherited by every element until overridden, see * above
+    box-sizing: border-box;
+}
+
+body {
+    // there is no font-size here because we respect the browser default
+    background-color: $white;
+    color: $schiphol-blue;
+    margin: 0;
+}
+
+main {
+    // For IE10 and IE11
+    display: block;
+}
+
+img,
+video {
+    // For IE
+    border-style: none;
+    height: auto;
+    max-width: 100%;
+}
+
+[hidden] {
+    // IE10 still needs this as it doesn't know the `hidden` attribute
+    display: none;
+}
+
+[tabindex="-1"]:focus {
+    // make sure that non-focussable elements don't get a browser default
+    // focus ring
+    outline: 0;
+}

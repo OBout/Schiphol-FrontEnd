@@ -1,0 +1,41 @@
+@import "./style-basics/all";
+@import "./style-core/colours";
+
+// -----------------------------------------------------------------------------
+// Blockquote
+// -----------------------------------------------------------------------------
+
+.rw-blockquote {
+    margin-bottom: 0;
+
+    &::before {
+        content: none;
+    }
+}
+
+.rw-blockquote__text {
+    font-size: 1.25rem;
+    position: relative;
+
+    &::before {
+        color: $morning-pink;
+        content: "“";
+        font-size: 4rem;
+        font-weight: 900;
+        position: absolute;
+        top: -.9844em;
+    }
+}
+
+.rw-blockquote__cite {
+    color: $morning-pink;
+    display: block;
+    font-size: .875rem;
+    font-style: normal;
+    margin-bottom: 2em;
+
+    &::before {
+        content: "—";
+        margin-right: 1ch;
+    }
+}

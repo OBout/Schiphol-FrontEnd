@@ -1,0 +1,8 @@
+// Fonts
+
+/* stylelint-disable value-keyword-case */
+$font-family-name: Neue Frutiger !default;
+/* stylelint-enable value-keyword-case */
+$font-stack: $font-family-name, sans-serif !default;
+$font-stack-fallback: sans-serif;
+$font-stack-print: serif;

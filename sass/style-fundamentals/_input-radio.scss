@@ -1,0 +1,39 @@
+@import "./style-core/colours";
+
+// move the actual input element off screen
+.rw-input-radio {
+    left: -9999rem;
+    position: absolute;
+}
+
+.rw-input-radio-label {
+    display: block;
+    font-size: .875rem;
+    min-height: 1.1875rem;
+    padding-left: 1.8rem;
+    position: relative;
+
+    // create pseudo input elements using `<label>`
+    &::before {
+        background-color: $white;
+        border: 1px solid $grey-overcast;
+        border-radius: 50%;
+        content: " ";
+        display: block;
+        height: 1.1875rem;
+        left: 0;
+        margin-right: .625rem;
+        position: absolute;
+        top: 0;
+        width: 1.1875rem;
+    }
+}
+
+.rw-input-radio:checked + .rw-input-radio-label::before {
+    background-color: $afternoon-blue;
+    box-shadow: inset 0 0 0 .25rem $white;
+}
+
+.rw-input-radio:focus + .rw-input-radio-label::before {
+    box-shadow: 0 0 0 .1875rem $morning-pink, inset 0 0 0 .25rem $white;
+}

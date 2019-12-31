@@ -1,0 +1,63 @@
+@import "./style-core/colours";
+@import "./style-core/transitions";
+
+// -----------------------------------------------------------------------------
+// Icon Links
+// -----------------------------------------------------------------------------
+
+.rw-icon-link {
+    appearance: none;
+    background-color: transparent; // in case it's used on a <button>
+    border: 0;
+    color: $afternoon-blue;
+    display: inline-block; // puts the focus ring is around a rectangular block
+    padding: 0;
+    text-decoration: none;
+
+    &:focus {
+        outline: .1875rem solid $morning-pink;
+        outline-offset: .25rem;
+    }
+
+    &:hover {
+        background: transparent;
+        outline: 0;
+    }
+
+    &:visited {
+        color: $afternoon-blue;
+    }
+
+    > .rw-icon {
+        height: 1.5em;
+        margin-right: .25ch;
+        transform: translateY(-.0625em);
+        vertical-align: middle;
+        width: 1.5em;
+
+
+        &.rw-icon--download {
+            height: 1.875em;
+            width: 1.875em;
+        }
+    }
+
+    > .rw-icon-link__text + .rw-icon {
+        margin-left: .25ch;
+        margin-right: 0;
+    }
+}
+
+.rw-icon-link--large {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.rw-icon-link__text {
+    border-bottom: .0625rem solid transparent;
+    transition: border-bottom-color $transition-fast;
+
+    .rw-icon-link:hover & {
+        border-bottom-color: inherit;
+    }
+}

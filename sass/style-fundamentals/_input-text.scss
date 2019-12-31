@@ -1,0 +1,39 @@
+@import "./style-core/colours";
+@import "./style-core/transitions";
+
+.rw-input-text,
+.rw-textarea {
+    appearance: none; // remove stubborn browser stuff
+    background-color: $white;
+    border: .0625rem solid $grey-scattered;
+    border-bottom-color: $grey-overcast;
+    border-radius: 0;
+    box-shadow: 0 .25rem .625rem rgba($black, 0);
+    color: inherit;
+    margin: 0;
+    min-height: 3.1rem;
+    padding: .6875rem 1.125rem;
+    transition: box-shadow $transition-fast;
+    width: 100%;
+
+    &:focus {
+        border-bottom-color: $afternoon-blue;
+        box-shadow: 0 .25rem .625rem rgba($black, .2);
+        outline: 0;
+    }
+
+    &:disabled {
+        background-color: $grey-few;
+        border-bottom-color: $grey-scattered;
+        color: unset;
+    }
+
+    &::selection {
+        background-color: $morning-pink;
+        color: $white;
+    }
+
+    &::placeholder {
+        color: $grey-overcast;
+    }
+}

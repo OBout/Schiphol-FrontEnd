@@ -1,0 +1,105 @@
+@import "./style-core/colours";
+@import "./style-core/transitions";
+@import "./style-basics/variables";
+
+// -----------------------------------------------------------------------------
+// Button
+// -----------------------------------------------------------------------------
+
+.rw-button {
+    align-items: center;
+    background-color: $afternoon-blue;
+    border: 0;
+    box-shadow: 0 .125em 0 0 darken($afternoon-blue, 20);
+    color: $white;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    padding: .75em 1.25em calc(.75em - 1px) 1.25em;
+    transition: box-shadow $transition-fast;
+    user-select: none;
+
+    &:visited {
+        color: $white;
+    }
+
+    &:focus {
+        outline: .1875rem solid $morning-pink;
+        outline-offset: 0;
+    }
+
+    &:hover {
+        background-color: $afternoon-blue;
+        box-shadow: 0 .25em 0 0 darken($afternoon-blue, 20);
+        outline: 0;
+    }
+
+    .rw-icon {
+        height: 1.5em;
+        margin-left: .25ch;
+        margin-right: -.5em;
+        width: 1.5em;
+
+        &:first-child {
+            margin-left: -.5em;
+            margin-right: .25ch;
+        }
+    }
+}
+
+.rw-button--large {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.rw-button--block {
+    display: flex;
+    width: 100%;
+}
+
+.rw-button--block-mobile {
+    display: flex;
+    width: 100%;
+
+    @media (min-width: 30em) {
+        width: auto;
+    }
+}
+
+.rw-button__text {
+    border-bottom: .0625rem solid transparent;
+    transition: border-bottom-color $transition-fast;
+
+    .rw-button:hover > & {
+        border-bottom-color: inherit;
+    }
+}
+
+@keyframes loadingBackgroundAnimation {
+
+    0% {
+        background-position: -100% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.rw-button--busy {
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: loadingBackgroundAnimation;
+    animation-timing-function: linear;
+    background: $grey-few;
+    background: linear-gradient(to right, $grey-few 10%, $grey-scattered 30%, $grey-few 45%);
+    background-size: 300% 100%;
+    box-shadow: 0 .125em 0 0 $grey-storm;
+    color: $grey-storm;
+    cursor: wait;
+
+    &:hover {
+        box-shadow: 0 .25em 0 0 $grey-storm;
+    }
+}

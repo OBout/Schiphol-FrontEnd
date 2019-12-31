@@ -1,0 +1,48 @@
+@import "./style-core/colours";
+
+.rw-input-checkbox {
+    left: -9999rem;
+    position: absolute;
+}
+
+.rw-input-checkbox-label {
+    display: block;
+    font-size: .875rem;
+    min-height: 1.1875rem;
+    padding-left: 1.8rem;
+    position: relative;
+
+    &::before {
+        background-color: $white;
+        border: .0625rem solid $grey-overcast;
+        content: " ";
+        display: inline-block;
+        height: 1.1875rem;
+        left: 0;
+        margin-right: .625rem;
+        position: absolute;
+        top: 0;
+        width: 1.1875rem;
+    }
+}
+
+.rw-input-checkbox:checked + .rw-input-checkbox-label::after {
+    border-color: $afternoon-blue;
+    border-style: solid;
+    border-width: 0 2px 2px 0;
+    content: " ";
+    height: 13px;
+    left: 6px;
+    position: absolute;
+    top: 1px;
+    transform: rotate(45deg);
+    width: 7px;
+}
+
+.rw-input-checkbox:focus + .rw-input-checkbox-label::before {
+    box-shadow: 0 0 0 .1875rem $morning-pink;
+}
+
+.rw-input-checkbox:disabled + .rw-input-checkbox-label::before {
+    background-color: $grey-few;
+}

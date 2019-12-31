@@ -1,0 +1,205 @@
+@import "./style-core/transitions";
+@import "./variables";
+
+html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeSpeed;
+    text-size-adjust: 100%;
+
+    // 480px @ 16px and up
+    @media (min-width: 30em) {
+        text-rendering: optimizeLegibility;
+    }
+
+    // Retina screens and up
+    @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+body {
+    // no explicit font-size here because we respect the browser default
+    font-family: $font-stack;
+    // use font-kerning information stored in the font
+    font-kerning: normal;
+    line-height: 1.5;
+
+    // some browsers, when printing to PDF, barf on custom fonts
+    @media print {
+        font-family: $font-stack-print;
+    }
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 900;
+    line-height: 1.125;
+    margin: 1rem 0 .25rem;
+
+    @media (min-width: 40em) {
+        font-size: 3.625rem;
+        line-height: 1.069;
+        margin: 1.75rem 0 .5rem;
+    }
+}
+
+h2 {
+    font-size: 1.375rem;
+    font-weight: 900;
+    line-height: 1.2222;
+    margin: 0 0 .5em;
+
+    @media (min-width: 40em) {
+        font-size: 1.75rem;
+        line-height: 1.1429;
+        margin: 0 0 .75em;
+    }
+}
+
+h3 {
+    font-size: 1.125rem;
+    font-weight: 900;
+    line-height: 1.25;
+    margin: 0 0 .2778em;
+
+    @media (min-width: 40em) {
+        font-size: 1.25rem;
+        line-height: 1.2222;
+        margin: 0 0 .25em;
+    }
+}
+
+h4,
+h5,
+h6 {
+    font-size: 1rem;
+    font-weight: 900;
+    line-height: 1.25;
+    margin: 0;
+}
+
+address,
+dl,
+p {
+    margin: 0 0 1rem;
+}
+
+dt {
+    font-weight: 900;
+}
+
+dd {
+    margin: 0 0 .5em;
+
+    &:last-of-type {
+        margin-bottom: 0;
+    }
+}
+
+ul,
+ol {
+    margin-bottom: 1rem;
+    margin-top: 0;
+    padding-left: 1.5rem;
+}
+
+ul {
+    list-style-type: square;
+}
+
+li {
+    padding-left: .625rem;
+}
+
+a {
+    border-bottom: 1px solid;
+    color: $afternoon-blue;
+    text-decoration: none;
+    transition: color $transition-fast,
+        background-color $transition-fast,
+        border-bottom-width $transition-fast,
+        border-bottom-color $transition-fast;
+
+    &:focus {
+        border-bottom-width: 0;
+        outline: .125rem dotted $morning-pink;
+        outline-offset: .0625em;
+        transition: none;
+    }
+
+    &:hover {
+        background-color: $grey-scattered;
+        border-bottom-width: .125rem;
+        outline: 0;
+    }
+
+    &:active {
+        color: $lightmorning-blue;
+    }
+}
+
+a,
+button {
+
+    svg {
+        pointer-events: none;
+    }
+}
+
+blockquote {
+    font-size: 1.25rem;
+    margin: 4.5em 0 2em;
+    position: relative;
+
+    &::before {
+        color: $morning-pink;
+        content: "“";
+        font-size: 4rem;
+        font-weight: 900;
+        position: absolute;
+        top: -.9844em;
+    }
+}
+
+address,
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+// stylelint-disable font-family-no-duplicate-names, declaration-property-unit-whitelist
+code,
+pre {
+    font-family: monospace, monospace; // Mozilla Firefox, Google Chrome, and Safari
+    font-size: .875em; // Internet Explorer and Opera
+}
+// stylelint-enable
+
+pre {
+    white-space: pre-wrap;
+}
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+legend {
+    font-size: 1.125rem;
+    font-weight: bold;
+}
+
+::placeholder {
+    color: $grey-overcast;
+    font: inherit;
+    opacity: 1; // thanks Firefox
+}
+
+hr {
+    border: .0625rem solid $grey-scattered;
+    margin: 0 0 1rem;
+    width: 100%;
+}

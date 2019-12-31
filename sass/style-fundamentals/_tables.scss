@@ -1,0 +1,152 @@
+// -----------------------------------------------------------------------------
+// Tables
+// -----------------------------------------------------------------------------
+
+@import "./style-core/mixins";
+
+.rw-table,
+table:not([class]) { // so it isn't needed to overwrite table specific styles
+    background-color: transparent;
+    border-collapse: collapse;
+    display: flex;
+    empty-cells: show;
+    flex-wrap: wrap;
+    font-size: .875rem;
+    margin-bottom: 3rem;
+    min-width: 18.125rem;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: auto;
+    vertical-align: top;
+    width: 100%;
+
+    @media (min-width: 40em) {
+        display: table;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    caption {
+        flex: 1 0 100%;
+        font-size: 1.125rem;
+        font-weight: 900;
+        line-height: 1.2222;
+        margin-bottom: .375rem;
+        margin-top: 1rem;
+        padding-bottom: .75rem;
+        text-align: left;
+
+        @media (min-width: 40em) {
+            display: table-caption;
+            font-size: 1.75rem;
+            line-height: 1.7778;
+            margin-bottom: .5625rem;
+            margin-top: 1.0625rem;
+        }
+    }
+
+    thead {
+        border-top: 2px solid $evening-pink;
+        display: flex;
+        flex: 0 0 40%;
+        flex-direction: column;
+        min-width: min-content;
+
+        @media (min-width: 40em) {
+            border-bottom: .0625rem solid $evening-pink;
+            border-top: .125rem solid $evening-pink;
+            display: table-header-group;
+        }
+
+        th {
+            font-weight: 900;
+        }
+    }
+
+    tbody {
+        border-top: 2px solid $evening-pink;
+        display: flex;
+        flex: 0 0 60%;
+        -webkit-overflow-scrolling: touch;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-bottom: 1px;
+        position: relative;
+
+        @media (min-width: 40em) {
+            border: 0;
+            display: table-row-group;
+            padding-bottom: 0;
+        }
+    }
+
+    tr {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        flex-shrink: 0;
+        min-width: min-content;
+
+        @media (min-width: 40em) {
+            border-bottom: .0625rem solid $evening-pink;
+            display: table-row;
+        }
+    }
+
+    th,
+    td {
+        border-bottom: .0625rem solid $evening-pink;
+        display: block;
+        padding: 1rem .5rem;
+        text-align: left;
+
+        @media (min-width: 40em) {
+            border-bottom: 0;
+            display: table-cell;
+            padding: 1rem 0;
+        }
+    }
+
+    th {
+        color: $evening-pink;
+        font-weight: bold;
+
+        &[scope="row"] {
+            color: inherit;
+            font-weight: normal;
+        }
+    }
+
+    td {
+        white-space: nowrap;
+
+        @media (min-width: 40em) {
+            white-space: normal;
+        }
+    }
+}
+
+.rw-table--complete {
+    flex-wrap: nowrap;
+    max-width: min-content;
+
+    @media (min-width: 40em) {
+        min-width: 100%;
+    }
+
+    caption {
+        @include visually-hidden;
+    }
+
+    thead {
+        flex: 1 0 auto;
+    }
+
+    tfoot {
+        border-top: 2px solid $evening-pink;
+
+        @media (min-width: 40em) {
+            border-bottom: .0625rem solid $evening-pink;
+            border-top: 0;
+        }
+    }
+}
