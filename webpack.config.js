@@ -1,11 +1,13 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+
 const path = require("path");
 
 module.exports = {
   mode: 'development',
   entry: "./src/js/index.js",
   output: {
-    path: path.resolve(__dirname, "public"),
+    path: path.resolve(__dirname, "dist"),
     filename: "js/bundle.js"
   },
   module: {
@@ -29,7 +31,7 @@ module.exports = {
           // Compiles Sass to CSS
           'sass-loader',
         ],
-      }
+      },
     ]
   },
   plugins: [
@@ -38,6 +40,10 @@ module.exports = {
       title: 'Schiphol | Demonstration',
       template: './src/index.html',
       filename: './index.html' //relative to root of the application
-    })
-]
+    }),
+    new CopyPlugin([{
+      from: './public/flights.json',
+      to: './json'
+    }])
+  ]
 };

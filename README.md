@@ -10,10 +10,13 @@ Please don't spend more than that unless you're having fun and want to show off 
 
 ## Requirement:
 - Use Webpack to build an ES5 bundle of your program.
+`v check`
 - Make it look nice. Make sure Webpack also packages your styles. We have provided some internal SCSS files in the `/sass` directory from our internal setup.
 You can read about these on [http://takeoff.schiphol.nl/component/style-fundamentals](http://takeoff.schiphol.nl/component/style-fundamentals)
+`v applied styles, but making it look nice takes me more time`
 - Your application should treat the contents of `flights.json` as the output of an API endpoint.
 It should load this via xhr and should not require a page load when the user changes their input.
+`v check`
 
 ## Submission:
 - Create a clone of this repository locally.

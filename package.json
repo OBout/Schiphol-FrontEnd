@@ -1,18 +1,19 @@
 {
   "name": "frontend-assignment",
-  "author": "",
+  "author": "Oscar Bout",
   "version": "1.0.0",
   "description": "A small assignment for frontend developers at Schiphol",
   "main": "src/index.js",
   "scripts": {
     "test": "jest",
     "watch": "webpack --watch",
-    "start": "webpack --watch & webpack-dev-server --open-page './public/index.html'",
+    "start": "webpack --watch & webpack-dev-server --open-page './dist/index.html'",
     "build": "webpack --config webpack.config.js"
   },
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.7.7",
+    "@babel/plugin-transform-modules-commonjs": "^7.7.5",
     "@babel/preset-env": "^7.7.7",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
@@ -20,6 +21,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
+    "copy-webpack-plugin": "^5.1.1",
     "css-loader": "^3.4.0",
     "extract-loader": "^3.1.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",

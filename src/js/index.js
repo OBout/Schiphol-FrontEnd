@@ -1,48 +1,17 @@
+// import style for webpack to spam it in the bundje.js
 import '../../sass/index.scss';
-import './htmlelementscreator';
+
+// import external functions to show how that can be done
+import {
+    appendHtmlElementWithClass,
+    appendHtmlElementWithClassAndText,
+    appendHtmlElementWithClassAndPlaceholder
+} from './htmlelementscreator';
 
 // globalz
 let flights;
 let autocompleteResults;
 const main = document.querySelector('main');
-
-const appendHtmlElementWithClass = (ele, id, classnames) => {
-    // populates main html tag
-
-    const newHtmlElement = document.createElement(ele);
-    newHtmlElement.id = id;
-    classnames.forEach(classname => {
-        newHtmlElement.classList.add(classname);
-    });
-    main.appendChild(newHtmlElement);
-    return newHtmlElement;
-};
-
-const appendHtmlElementWithClassAndText = (ele, id, text, classnames) => {
-    // populates main html tag
-
-    const newHtmlElement = document.createElement(ele);
-    newHtmlElement.id = id;
-    newHtmlElement.appendChild(document.createTextNode(text));
-    classnames.forEach(classname => {
-        newHtmlElement.classList.add(classname);
-    });
-    main.appendChild(newHtmlElement);
-    return newHtmlElement;
-};
-
-const appendHtmlElementWithClassAndPlaceholder = (ele, id, placeholder, classnames) => {
-    // populates main html tag
-
-    const newHtmlElement = document.createElement(ele);
-    newHtmlElement.id = id;
-    newHtmlElement.placeholder = placeholder;
-    classnames.forEach(classname => {
-        newHtmlElement.classList.add(classname);
-    });
-    main.appendChild(newHtmlElement);
-    return newHtmlElement;
-};
 
 // general functions
 const initJson = () => {
@@ -58,11 +27,16 @@ const autocomplete = (vali) => {
 
     let flights_return_after_search = [];
     for (let i = 0; i < flights.flights.length; i++) {
-        for (let val in flights.flights[i]) {
+        let addToFlight = false;
+        for (let val in flights.flights[i]) { 
+            // little extra tuning needed here to make this more efficient it needs a break, no need to keep looping when hit
             const key = flights.flights[i][val].toLowerCase();
             if (key.indexOf(vali) != -1) {
-                flights_return_after_search.push(flights.flights[i]);
+                addToFlight = true;
             }
+        }
+        if (addToFlight === true) { // prevent doubles
+            flights_return_after_search.push(flights.flights[i]);
         }
     }
     return flights_return_after_search;
@@ -73,12 +47,12 @@ const resetResults = () => {
 
     const element = document.getElementById('autocomplete-results');
     main.removeChild(element);
-    autocompleteResults = appendHtmlElementWithClass('table', 'autocomplete-results', ['rw-table']);
+    autocompleteResults = appendHtmlElementWithClass('table', 'autocomplete-results', ['rw-table'], main);
 };
 const updateCheckValue = (e) => {
     // triggering empty search event or (x) button in the right of search field
 
-    if (e.target.value.length < 4) { 
+    if (e.target.value.length < 4) {
         resetResults();
     }
 };
@@ -86,12 +60,12 @@ const updateValue = (e) => {
     // triggered by some random updated value event
 
     if (e.target.value.length > 3) {
-        // type ahead valid
+        // type ahead is valid, so "start spamming the news"
 
         let flights_return = [];
 
         try {
-            // remove child nodes the fastest way
+            // remove html child nodes the fastest way
             resetResults();
         } catch (error) {
             // no children, nothing to remove
@@ -101,6 +75,7 @@ const updateValue = (e) => {
         flights_return = autocomplete(val, flights);
 
         for (let i = 0; i < flights_return.length; i++) {
+            // build result list
 
             const flight = flights_return[i];
             const hr = document.createElement('hr');
@@ -118,7 +93,7 @@ const updateValue = (e) => {
             const flightHeader = document.createElement('th');
             row1.appendChild(flightHeader);
             flightHeader.colSpan = 2;
-            flightHeader.appendChild(document.createTextNode(flight.airport));
+            flightHeader.appendChild(document.createTextNode(flight.flightNumber + ' ' + flight.airport));
 
             // second row flight search header
             const row2 = document.createElement('tr');
@@ -145,7 +120,7 @@ const updateValue = (e) => {
         autocompleteResults.style.display = 'block';
     } else {
         try {
-            // remove child nodes the fastest way
+            // remove html child nodes the fastest way
             resetResults();
         } catch (error) {
             // no children, nothing to remove
@@ -154,9 +129,11 @@ const updateValue = (e) => {
 };
 
 const loadJSON = (callback) => {
+    // load JSON from url and do callback function afterwards
+
     let flights_obj = new XMLHttpRequest();
     flights_obj.overrideMimeType("application/json");
-    flights_obj.open('GET', 'flights.json', true);
+    flights_obj.open('GET', 'json/flights.json', true);
     flights_obj.onreadystatechange = () => {
         if (flights_obj.readyState === 4 && flights_obj.status === 200) {
             callback(flights_obj.responseText);
@@ -167,12 +144,13 @@ const loadJSON = (callback) => {
 
 const init = () => {
     // initializes all html
+    
     initJson();
-    appendHtmlElementWithClassAndText('div', 'pick-header', 'Schiphol SearchMyFlight', ['rw-heading-l'])
-    appendHtmlElementWithClassAndText('div', 'pick-label', 'Pick a flight', ['rw-input-label']);
-    const inputForTypeahead = appendHtmlElementWithClassAndPlaceholder('input', 'pick-flight-input', 'Pick a flight', ['rw-input-text']);
+    appendHtmlElementWithClassAndText('div', 'pick-header', 'Schiphol SearchMyFlight', ['rw-heading-l'], main);
+    appendHtmlElementWithClassAndText('div', 'pick-label', 'Pick a flight', ['rw-input-label'], main);
+    const inputForTypeahead = appendHtmlElementWithClassAndPlaceholder('input', 'pick-flight-input', 'Search Flight on Airport, Number, Time, etc', ['rw-input-text'], main);
 
-    autocompleteResults = appendHtmlElementWithClass('table', 'autocomplete-results', ['rw-table']);
+    autocompleteResults = appendHtmlElementWithClass('table', 'autocomplete-results', ['rw-table'], main);
     inputForTypeahead.onkeyup = updateValue;
     inputForTypeahead.type = "search";
     inputForTypeahead.onsearch = updateCheckValue;
