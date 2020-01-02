@@ -1,11 +1,11 @@
 DONE - for now, my finger itch to finish, but 4 hours is 4 hours and fair is fair
 ### v check
 
-To setup dev environment
+## To setup dev environment
 ```npm i```
-To run
+## To run
 ```npm start```
-To test
+## To test
 ```npm test```
 
 # Assignment
