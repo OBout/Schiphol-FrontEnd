@@ -1,6 +1,13 @@
 DONE - for now, my finger itch to finish, but 4 hours is 4 hours and fair is fair
 ### v check
 
+To setup dev environment
+```npm i```
+To run
+```npm start```
+To test
+```npm test```
+
 # Assignment
 
 Please create a page that contains an input field.
@@ -12,7 +19,7 @@ We think 4 hours should be enough to spend on this assignment.
 ### v check
 
 Please don't spend more than that unless you're having fun and want to show off :)
-### v check
+### v check - sorry no time to show off, just filled 4 hours
 
 ## Requirement:
 
