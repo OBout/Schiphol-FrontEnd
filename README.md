@@ -1,3 +1,5 @@
+DONE - for now, my finger itch to finish, but 4 hours is 4 hours and fair is fair
+
 # Assignment
 
 Please create a page that contains an input field.
