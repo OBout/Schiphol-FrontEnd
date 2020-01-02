@@ -1,42 +1,4 @@
-// import style for webpack to spam it in the bundje.js
-import '../../sass/index.scss';
-import '../sass/extrastyle.scss';
-
-// import external functions to show how that can be done
-import {
-    appendHtmlElementWithClass,
-    appendHtmlElementWithClassAndText,
-    appendHtmlElementWithClassAndPlaceholder
-} from './htmlelementscreator';
-
-// globalz
-let flights;
-let autocompleteResults;
-const main = document.querySelector('main');
-
-// general functions to load JSON file
-const loadJSON = (callback) => {
-    // load JSON from url and do callback function afterwards
-
-    let flights_obj = new XMLHttpRequest();
-    flights_obj.overrideMimeType("application/json");
-    flights_obj.open('GET', 'json/flights.json', true);
-    flights_obj.onreadystatechange = () => {
-        if (flights_obj.readyState === 4 && flights_obj.status === 200) {
-            callback(flights_obj.responseText);
-        }
-    };
-    flights_obj.send(null);
-};
-const initJson = () => {
-    // getting json file from server
-
-    loadJSON((response) => {
-        const actual_JSON = JSON.parse(response);
-        flights = actual_JSON;
-    });
-};
-const autocomplete = (vali) => {
+export function autocomplete (vali) {
     // autocomplete list
 
     let flights_return_after_search = [];
@@ -56,21 +18,21 @@ const autocomplete = (vali) => {
     return flights_return_after_search;
 };
 
-const resetResults = () => {
+export function resetResults () {
     // clearing search results
 
     const element = document.getElementById('autocomplete-results');
     main.removeChild(element);
-    autocompleteResults = appendHtmlElementWithClass('table', 'autocomplete-results', ['rw-table', 'search-table-flights'], main);
+    autocompleteResults = appendHtmlElementWithClass('table', 'autocomplete-results', ['rw-table'], main);
 };
-const updateCheckValue = (e) => {
+export function updateCheckValue (e) {
     // triggering empty search event or (x) button in the right of search field
 
     if (e.target.value.length < 4) {
         resetResults();
     }
 };
-const updateValue = (e) => {
+export function updateValue = (e)  {
     // triggered by some random updated value event
 
     if (e.target.value.length > 3) {
@@ -92,6 +54,8 @@ const updateValue = (e) => {
             // build result list
 
             const flight = flights_return[i];
+            const hr = document.createElement('hr');
+            autocompleteResults.appendChild(hr);
             const tr = document.createElement('tr');
             autocompleteResults.appendChild(tr);
 
@@ -105,7 +69,7 @@ const updateValue = (e) => {
             const flightHeader = document.createElement('th');
             row1.appendChild(flightHeader);
             flightHeader.colSpan = 2;
-            flightHeader.appendChild(document.createTextNode(flight.flightNumber + ' from ' + flight.airport));
+            flightHeader.appendChild(document.createTextNode(flight.flightNumber + ' ' + flight.airport));
 
             // second row flight search header
             const row2 = document.createElement('tr');
@@ -127,9 +91,9 @@ const updateValue = (e) => {
 
             row3.appendChild(timeOrgLabel);
             row3.appendChild(timeOrg);
-            const hr = document.createElement('hr');
-            autocompleteResults.appendChild(hr);
+
         }
+        autocompleteResults.style.display = 'block';
     } else {
         try {
             // remove html child nodes the fastest way
@@ -139,21 +103,3 @@ const updateValue = (e) => {
         }
     }
 };
-
-const init = () => {
-    // initializes all html
-
-    initJson();
-    appendHtmlElementWithClassAndText('div', 'pick-header', 'Schiphol SearchMyFlight', ['rw-heading-l', 'search-header-flights'], main);
-    appendHtmlElementWithClassAndText('div', 'pick-label', 'Pick a flight', ['rw-input-label', 'search-label-flights'], main);
-    const inputForTypeahead = appendHtmlElementWithClassAndPlaceholder('input', 'pick-flight-input', 'Search Flight on Airport, Number, Time, etc', ['rw-input-text'], main);
-
-    autocompleteResults = appendHtmlElementWithClass('table', 'autocomplete-results', ['rw-table'], main);
-    inputForTypeahead.onkeyup = updateValue;
-    inputForTypeahead.type = "search";
-    inputForTypeahead.onsearch = updateCheckValue;
-
-};
-
-// inits the entire app
-init();
