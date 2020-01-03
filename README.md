@@ -1,4 +1,4 @@
-DONE - for now, my finger itch to finish, but 4 hours is 4 hours and fair is fair
+DONE - for now, my fingers itch to finish, but 4 hours is 4 hours and fair is fair
 ### v check
 
 ## To setup dev environment
