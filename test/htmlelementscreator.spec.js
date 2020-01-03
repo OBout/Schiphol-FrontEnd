@@ -8,7 +8,7 @@ import { nodeToString } from './objecttostring'; // extra function to be able to
 
 let mn; // main html tag in DOM
 
-describe("Testing 3 functions in htmlelementscreator.js", () => {
+describe("Testing 3  functions in htmlelementscreator.js", () => {
 
     beforeEach(() => {
         mn = document.createElement('main');

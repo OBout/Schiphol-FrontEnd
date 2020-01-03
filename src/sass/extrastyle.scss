@@ -3,7 +3,11 @@
         margin-left: 40px;
         max-width: 480px;
     }
+    .search-page-flights {
+        max-width: 480px;
+    }
 }
-.search-header-flights, .search-label-flights {
+.search-header-flights, .search-label-flights, .search-page-flights {
     padding: 5px;
+        margin-left: 40px;
 }

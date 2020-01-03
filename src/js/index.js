@@ -144,9 +144,9 @@ const init = () => {
     // initializes all html
 
     initJson();
-    appendHtmlElementWithClassAndText('div', 'pick-header', 'Schiphol SearchMyFlight', ['rw-heading-l', 'search-header-flights'], main);
-    appendHtmlElementWithClassAndText('div', 'pick-label', 'Pick a flight', ['rw-input-label', 'search-label-flights'], main);
-    const inputForTypeahead = appendHtmlElementWithClassAndPlaceholder('input', 'pick-flight-input', 'Search Flight on Airport, Number, Time, etc', ['rw-input-text'], main);
+    appendHtmlElementWithClassAndText('div', 'pick-header', 'Schiphol SearchMyFlight', ['rw-heading-l', 'search-header-flights', 'search-page-flights'], main);
+    // appendHtmlElementWithClassAndText('div', 'pick-label', '->', ['rw-input-label', 'search-label-flights', 'search-page-flights'], main);
+    const inputForTypeahead = appendHtmlElementWithClassAndPlaceholder('input', 'pick-flight-input', 'Search Flight on Airport, Number, Time, etc', ['rw-input-text', 'search-page-flights'], main);
 
     autocompleteResults = appendHtmlElementWithClass('table', 'autocomplete-results', ['rw-table'], main);
     inputForTypeahead.onkeyup = updateValue;
